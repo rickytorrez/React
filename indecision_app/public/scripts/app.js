@@ -1,14 +1,14 @@
 'use strict';
 
-// Contains JSX
-
 console.log("App.js is running");
 
 // JSX - JavaScript XML
 var info = {
     title: 'Indecision App',
-    subtitle: 'This is some random ass info'
+    subtitle: 'This is some random ass info',
+    options: ['One', 'Two']
 };
+
 var template = React.createElement(
     'div',
     null,
@@ -20,7 +20,11 @@ var template = React.createElement(
     React.createElement(
         'p',
         null,
-        info.subtitle
+        info.subtitle && React.createElement(
+            'p',
+            null,
+            info.subtitle
+        )
     ),
     React.createElement(
         'ol',
@@ -35,36 +39,49 @@ var template = React.createElement(
             null,
             'Item two'
         )
+    ),
+    React.createElement(
+        'p',
+        null,
+        info.options.length > 0 ? 'Here are your options' : 'No Options'
     )
 );
 
+////////////////////////////////////////////////////////////////////////////
 var user = {
     name: 'Ricardo',
     age: 28,
     location: 'Bolivia'
 };
+
+function getLocaton(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            ' Location: ',
+            location
+        );
+    }
+}
+
 var newTemplate = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         'p',
         null,
         'Age: ',
         user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: ',
-        user.location,
-        ' '
-    )
+    getLocaton(user.location)
 );
+
 var appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
