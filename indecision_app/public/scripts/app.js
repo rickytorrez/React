@@ -1,87 +1,25 @@
 'use strict';
 
-console.log("App.js is running");
+// arguments object - no longer bound with arrow functions 
 
-// JSX - JavaScript XML
-var info = {
-    title: 'Indecision App',
-    subtitle: 'This is some random ass info',
-    options: ['One', 'Two']
+var add = function add(a, b) {
+    // console.log(arguments);
+    return a + b;
 };
+console.log(add(7, 1, 1001));
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        info.title
-    ),
-    React.createElement(
-        'p',
-        null,
-        info.subtitle && React.createElement(
-            'p',
-            null,
-            info.subtitle
-        )
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    ),
-    React.createElement(
-        'p',
-        null,
-        info.options.length > 0 ? 'Here are your options' : 'No Options'
-    )
-);
+// this keyword - no longer bound
 
-////////////////////////////////////////////////////////////////////////////
 var user = {
     name: 'Ricardo',
-    age: 28,
-    location: 'Bolivia'
+    cities: ['Cochabamba', 'NYC', 'DC'],
+    printPlacesLived: function printPlacesLived() {
+        var _this = this;
+
+        this.cities.forEach(function (city) {
+            console.log(_this.name + ' has lived in ' + city);
+        });
+    }
 };
 
-function getLocaton(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            ' Location: ',
-            location
-        );
-    }
-}
-
-var newTemplate = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocaton(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+user.printPlacesLived();
