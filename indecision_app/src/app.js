@@ -21,27 +21,33 @@ const template = (
 
 let count = 0;
 const addOne = () => {
-    console.log("addOne");
+    count = count + 1;
+    renderCounterApp();
 };
 let count1 = 0;
 const substractOne = () => {
-    console.log('minus one')
+    count = count - 1;
+    renderCounterApp();
 };
 
 let reset = 0;
 const resetCount = () => {
-    console.log('reset');
+    count = 0;
+    renderCounterApp();
 };
-const templateTwo = (
-  <div>
-    <h1>Count: { count }</h1>
-    <button onClick = { addOne }>+1</button>
-    <button onClick = { substractOne }>-1</button>
-    <button onClick = { resetCount }>Reset</button>
-  </div>
-);
 
-// console.log(templateTwo);
 const appRoot = document.getElementById('app');
 
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+          <h1>Count: { count }</h1>
+          <button onClick = { addOne }>+1</button>
+          <button onClick = { substractOne }>-1</button>
+          <button onClick = { resetCount }>Reset</button>
+        </div>
+      );
 ReactDOM.render(templateTwo, appRoot);
+}
+
+renderCounterApp();
