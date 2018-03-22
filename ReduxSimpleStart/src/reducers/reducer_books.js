@@ -1,9 +1,9 @@
 export default function() {
     return [
-        {title: 'The Art of the Myth'},
-        {title: 'How to make friends and influence people'},
-        {title: 'The Odyssey'},
-        {title: 'The Bible'}
+        {title: 'The Art of the Myth', pages: 101},
+        {title: 'How to make friends and influence people', pages: 431},
+        {title: 'The Odyssey', pages: 201},
+        {title: 'The Bible', pages: 1001}
     ]
 }
 
