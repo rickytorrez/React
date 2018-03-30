@@ -8,7 +8,7 @@ class PostsNew extends Component {
             <form>
                 <Field 
                     name='title'
-                    component={  }
+                    component={ }
                 />
             </form>
         );
