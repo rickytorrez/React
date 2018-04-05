@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ToDoInput from './components/ToDoInput';
+import ToDoItem from './components/ToDoItem';
 
 class App extends Component {
   constructor (props){
@@ -22,11 +23,18 @@ class App extends Component {
   } 
 
   addToDo(toDoText) {
-    console.log("ToDo added: ", toDoText);
+    let toDos = this.state.toDos.slice();           // Array on line 13
+    toDos.push({id: this.state.nextId, text: toDoText});
+    this.setState({
+      toDos: toDos,
+      nextId: ++this.state.nextId
+    })
   }
 
   removeToDo(id){
-    console.log("removing", id);
+    this.setState({
+      toDos: this.state.toDos.filter((toDo, index) => toDo.id !== id)
+    })
   }
 
   
