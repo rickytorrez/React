@@ -20,7 +20,7 @@ export default class ToDoInput extends React.Component {
         if (todo.length > 0) {
             this.props.addToDo(todo);
             this.setState({ value: '' });
-        }
+        };
     }
 
     render (){

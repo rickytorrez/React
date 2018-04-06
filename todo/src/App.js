@@ -23,7 +23,7 @@ class App extends Component {
   } 
 
   addToDo(toDoText) {
-    let toDos = this.state.toDos.slice();           // Array on line 13
+    let toDos = this.state.toDos.slice();           //  Array on line 13
     toDos.push({id: this.state.nextId, text: toDoText});
     this.setState({
       toDos: toDos,
