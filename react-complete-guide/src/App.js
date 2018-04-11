@@ -46,7 +46,7 @@ class App extends Component {
 
     person.name = event.target.value;                                       // updates person name (copy), not original
     const persons = [...this.state.persons];                                // updates the array at the position that was fetched
-    persons[personIndex] = person;                                          // updates at one position
+    persons[personIndex] = person;                                          // updates at one position inside the array
 
     this.setState( { persons: persons } )                                   // updates the state
   }
