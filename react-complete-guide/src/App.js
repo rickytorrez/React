@@ -5,34 +5,50 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 23 },
-      { name: 'Steph', age: 21 }
+      { id:'1', name: 'Max', age: 28 },
+      { id:'2', name: 'Manu', age: 23 },
+      { id:'3', name: 'Steph', age: 21 }
     ],
     otherState: 'some other value',
     showPersons: false
   }
 
-  switchNameHandler = (newName)=>{
-    // console.log('Was clicked');
-    // DON'T DO THIS: this.state.persons[0].name="Maximillian";
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: 'Manu', age: 23 },
-        { name: 'Steph', age: 43 }
-      ]
-    })
+  // switchNameHandler = (newName)=>{
+  //   // console.log('Was clicked');
+  //   // DON'T DO THIS: this.state.persons[0].name="Maximillian";
+  //   this.setState({
+  //     persons: [
+  //       { name: newName, age: 28 },
+  //       { name: 'Manu', age: 23 },
+  //       { name: 'Steph', age: 43 }
+  //     ]
+  //   })
+  // }
+
+  deletePersonHandler = (personIndex) => {
+    // const persons = this.state.persons.slice();
+
+    const persons = [...this.state.persons];                                // spread operator 
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
   }
 
-  nameChangeHandler = (event)=>{
-    this.setState({
-      persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 23 },
-        { name: 'Steph', age: 43 }
-      ]
-    })
+  nameChangeHandler = (event, id )=>{
+    const personIndex = this.state.persons.findIndex(p => {                 // find person
+      return p.id === id;
+    });       
+
+    const person = {                                                        // duplicates state
+      ...this.state.persons[personIndex]                                    // spread operator
+    };
+
+    // const person = Object.assign({}, this.state.persons[personIndex]);   // alternative
+
+    person.name = event.target.value;                                       // updates person name (copy), not original
+    const persons = [...this.state.persons];                                // updates the array at the position that was fetched
+    persons[personIndex] = person;                                          // updates at one position
+
+    this.setState( { persons: persons } )                                   // updates the state
   }
 
   togglePersonsHandler = ()=>{
@@ -54,10 +70,13 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person 
+              click={() => this.deletePersonHandler(index)}
               name={person.name} 
-              age={person.age} />
+              age={person.age} 
+              key={person.id}
+              changed={(event) => this.nameChangeHandler(event, person.id)}/>
           })}
         </div>
       );
