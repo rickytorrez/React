@@ -64,7 +64,6 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
-    // let people = null;  
     let persons = null;
     
     if (this.state.showPersons) {
