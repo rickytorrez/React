@@ -18,13 +18,13 @@ class App extends Component {
     }
   }
 
-  componentWillMount () {
-    console.log('[App.js] Inside componentWillMount()' );
-  }
+  // componentWillMount () {
+  //   console.log('[App.js] Inside componentWillMount()' );
+  // }
 
-  componentDidMount () {
-    console.log('[App.js] Inside componentDidMount()');
-  }
+  // componentDidMount () {
+  //   console.log('[App.js] Inside componentDidMount()');
+  // }
 
   // state = {
   //   persons: [
